@@ -1,0 +1,57 @@
+drop table HospitalLogin;
+drop table HospitalSchedule;
+
+Create Table HospitalLogin (
+Hospital_UserName varchar (30) primary key,
+Hospital_Password varchar (30) not null
+);
+
+Insert into HospitalLogin values ('Harry', 'Hello123');
+Insert into HospitalLogin values ('John', 'Jolly123');
+Insert into HospitalLogin values ('Dinesh', 'Din123');
+Insert into HospitalLogin values ('Manoj', 'Manoj123');
+commit();
+
+Create Table HospitalSchedule (Name varchar (30),
+Day varchar (30),
+Time varchar (30),
+Specialization varchar (30));
+
+Insert into HospitalSchedule values ('Dinesh', 'Monday', '2 to 4', 'ENT');
+Insert into HospitalSchedule values ('Dinesh', 'Tuesday', '2 to 4', 'ENT');
+Insert into HospitalSchedule values ('Dinesh', 'Wednesday', '2 to 4', 'ENT');
+Insert into HospitalSchedule values ('Harry', 'Thursday', '10 to 12', 'General Physician');
+Insert into HospitalSchedule values ('Harry', 'Friday', '10 to 12', 'General Physician');
+Insert into HospitalSchedule values ('John', 'Monday', '10 to 12', 'Cardiologist');
+Insert into HospitalSchedule values ('John', 'Tuesday', '10 to 12','Cardiologist');
+Insert into HospitalSchedule values ('John', 'Wednesday', '10 to 12',' Cardiologist');
+Insert into HospitalSchedule values ('Manoj', 'Thursday', '4 to 6', 'Orthopedic');
+Insert into HospitalSchedule values ('Manoj', 'Friday', '4 to 6', 'Orthopedic');
+Insert into HospitalSchedule values ('Manoj', 'Monday', '4 to 6', 'Orthopedic');
+Insert into HospitalSchedule values ('Manoj', 'Tuesday', '4 to 6', 'Orthopedic');
+commit;
+
+
+drop table Admin_login;
+drop table Ticket_Details;
+drop table Train_Details;
+
+create table Admin_login(unm varchar2(20),pwd varchar2(20));
+insert into  Admin_login values('admin','admin');
+commit;
+
+create table Train_Details(tNo number primary key,name varchar2(20),source varchar2(20),destination varchar2(20),fare number(7,2));
+insert into Train_Details values(12390,'Lucknow Mail','NDLS','LKO',560.90);
+insert into Train_Details values(12354,'ANVT EXP','ANVT','PNBE',600.00);
+insert into Train_Details values(12394,'Rajdhani','NDLS','Mumbi',2000.90);
+commit;
+
+create table Ticket_Details (ticketid number primary key,class varchar2(20),
+source varchar2(20), destination varchar2(20),noOfPsg number,totalAmt number(8,2),tNo number not null,
+CONSTRAINT fk_train
+FOREIGN KEY (tNo) REFERENCES Train_Details(tNo));
+
+select * from ADMIN_LOGIN;
+select * from TRAIN_DETAILS;
+select * from TICKET_DETAILS;
+select * from TRAIN_DETAILS where tno=12390 and SOURCE='NDLS' and fare=560.9;
